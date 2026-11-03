@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PixelFX 3D: documentation</title>
+<meta name="description" content="How to install and use PixelFX 3D, the 3D voxel VFX library for Blender.">
+<meta property="og:title" content="PixelFX 3D: documentation">
+<meta property="og:description" content="How to install and use PixelFX 3D, the 3D voxel VFX library for Blender.">
+<meta property="og:image" content="images/thumbnail.jpg">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1 class="logo">PIXELFX <span>3D</span></h1>
+    <p class="tagline">Documentation</p>
+    <nav class="docnav">
+      <a href="#install">Install</a><a href="#use">Use an effect</a><a href="#inputs">Modifier inputs</a><a href="#timing">Timing</a>
+      <a href="#performance">Performance</a><a href="#render">Rendering</a><a href="#contents">What's inside</a>
+      <a href="#trouble">Troubleshooting</a><a href="#credits">Credits</a>
+    </nav>
+  </div>
+</header>
+
+<section id="install" class="doc">
+  <div class="wrap">
+    <div class="kicker">1</div>
+    <h2>Install the library</h2>
+    <ol class="steps">
+      <li>Unzip <b>PixelFX3D_Library.zip</b> somewhere it can stay, for example <code>Documents/Blender Assets/PixelFX 3D</code>. The folder holds <code>PixelFX 3D.blend</code>, its catalogs, a README and the license.</li>
+      <li>In Blender open <b>Edit &gt; Preferences &gt; File Paths &gt; Asset Libraries</b>, press <b>+</b> and pick that folder.</li>
+      <li>Leave the import method on <b>Append (Reuse Data)</b>: every effect you add shares one copy of the player node group.</li>
+    </ol>
+    <div class="note"><p>PixelFX 3D is not an add-on. There is nothing to enable, and a .blend you send to someone else plays the effects as long as they have Blender 5.2 or newer.</p></div>
+  </div>
+</section>
+
+<section id="use" class="doc">
+  <div class="wrap">
+    <div class="kicker">2</div>
+    <h2>Use an effect</h2>
+    <ol class="steps">
+      <li>Turn any area into an <b>Asset Browser</b> (the timeline works well) and choose the <b>PixelFX 3D</b> library at the top left.</li>
+      <li>Pick a category on the left, or type in the search field: <i>fire</i>, <i>portal</i>, <i>coin</i>.</li>
+      <li>Drag an effect into the 3D viewport and let go. It lands on the surface under the cursor.</li>
+      <li>Press play (<kbd>Space</kbd>). Every effect loops from frame 1.</li>
+    </ol>
+    <p>An effect is an ordinary object: move, rotate and scale it, parent it to something, duplicate it with <kbd>Shift</kbd> <kbd>D</kbd>. Its mesh is empty; the <b>PixelFX 3D</b> modifier builds the cubes for the current frame, so the effect only appears when the modifier is on.</p>
+    <p>Change an effect's size by scaling the object, or with <b>Pixel Size</b> in the modifier's <b>Baked Effect</b> panel (the size of one art pixel, 0.025 m by default).</p>
+  </div>
+</section>
+
+<section id="inputs" class="doc">
+  <div class="wrap">
+    <div class="kicker">3</div>
+    <h2>Modifier inputs</h2>
+    <p>Select an effect and open the <b>Modifiers</b> tab (the wrench) in the Properties editor.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Input</th><th>What it does</th></tr>
+      <tr><td>Start Frame</td><td>The scene frame the effect starts on. Offset copies of the same effect so they don't move in step.</td></tr>
+      <tr><td>Speed</td><td>Playback speed: 0.5 is half speed, 2 is twice as fast.</td></tr>
+      <tr><td>Loop</td><td>On for every effect by default. Turn it off to play a one-shot (an explosion, a hit, a level-up) once from Start Frame; before and after that it shows nothing.</td></tr>
+      <tr><td>Voxel Size</td><td>The size of the cubes, 0.025 m by default. A bigger size keeps the effect as big but uses chunkier cubes: less detail, far fewer cubes, faster.</td></tr>
+      <tr><td>Viewport Simplify</td><td>1 to 8. In the viewport only, the cubes are this many times bigger. Renders always use Voxel Size.</td></tr>
+      <tr><td>LOD Distance</td><td>0 is off. Otherwise the cubes get one step coarser for every this many metres the effect is from the active camera.</td></tr>
+      <tr><td>Glow</td><td>How much the voxels shine by themselves.</td></tr>
+      <tr><td>Light</td><td>How strongly the effect's own glow tints its voxels.</td></tr>
+    </table></div>
+    <h3>Baked Effect panel</h3>
+    <div class="tablewrap"><table>
+      <tr><td>Pixel Size</td><td>The size of one art pixel: the effect's scale.</td></tr>
+      <tr><td>Voxels, Index, Palette</td><td>The baked effect, as three images packed in the file. Leave them as they are.</td></tr>
+      <tr><td>Frames, FPS</td><td>The effect's own frame count and frame rate. Use Speed to change timing, not these.</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<section id="timing" class="doc">
+  <div class="wrap">
+    <div class="kicker">4</div>
+    <h2>Timing</h2>
+    <ul class="ticks">
+      <li>Effects play from the scene frame, at their own frame rate, whatever your scene's frame rate is.</li>
+      <li>To fire an effect at frame 120, set <b>Start Frame</b> to 120 and turn <b>Loop</b> off.</li>
+      <li>To keep a loop going, leave Loop on; Start Frame then only shifts where in the loop it is.</li>
+      <li>You can keyframe any input, for example Speed, or Start Frame to fire the same object twice.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="performance" class="doc">
+  <div class="wrap">
+    <div class="kicker">5</div>
+    <h2>Performance</h2>
+    <ul class="ticks">
+      <li><b>Viewport Simplify</b> 2 or 3 keeps the viewport smooth with many effects; renders are not affected.</li>
+      <li><b>LOD Distance</b> around 10 m lets far-away effects use far fewer cubes. A scene with all 244 effects, seen from a distance, drops from about 1.3 million cubes to about 100 thousand.</li>
+      <li><b>Voxel Size</b> x2 has about a quarter of the cubes, x4 about a fourteenth.</li>
+      <li>Hide effects you aren't working on, or disable their modifier in the viewport.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="render" class="doc">
+  <div class="wrap">
+    <div class="kicker">6</div>
+    <h2>Rendering</h2>
+    <h3>EEVEE</h3>
+    <p>The voxels are emissive. For the glow around them, open the <b>Compositing</b> workspace, press <b>New</b> to start a compositor node tree and add a <b>Glare</b> node set to <b>Bloom</b> between Render Layers and the output (a threshold around 0.5 to 1 works well). Point or area lights near bright effects (a campfire, a torch) sell the light they give off.</p>
+    <h3>Cycles</h3>
+    <p>Effects light their surroundings by themselves. Add bloom in the compositor the same way if you want the halo.</p>
+    <div class="note"><p>Pixel art looks best with a dark world and a little fog or bloom. The library's preview renders use a near-black world and bloom.</p></div>
+  </div>
+</section>
+
+<section id="contents" class="doc">
+  <div class="wrap">
+    <div class="kicker">7</div>
+    <h2>What's inside</h2>
+    <p>244 effects in 21 catalogs:</p>
+    <ul class="catlist"><li><b>Fire</b> 12</li><li><b>Explosions</b> 12</li><li><b>Arcane</b> 12</li><li><b>Lightning</b> 11</li><li><b>Ice</b> 10</li><li><b>Water</b> 12</li><li><b>Nature</b> 13</li><li><b>Holy</b> 10</li><li><b>Shadow</b> 12</li><li><b>Sci-Fi</b> 12</li><li><b>Pickups</b> 11</li><li><b>Projectiles</b> 13</li><li><b>Melee</b> 12</li><li><b>Impacts</b> 11</li><li><b>Moves</b> 12</li><li><b>Status</b> 13</li><li><b>Spawn &amp; Death</b> 10</li><li><b>Critters</b> 12</li><li><b>Weather</b> 12</li><li><b>Transitions</b> 10</li><li><b>UI</b> 12</li></ul>
+    <p>Transitions are wall-sized objects (4 x 2.25 m at the default size) that close and open again. Weather fills a deep volume, about 8 x 4.5 m wide and several metres deep. Status effects show on a small stand-in figure.</p>
+  </div>
+</section>
+
+<section id="trouble" class="doc">
+  <div class="wrap">
+    <div class="kicker">8</div>
+    <h2>Troubleshooting</h2>
+    <details><summary>I dropped an effect and nothing shows</summary><p>Check the modifier is enabled in the viewport, and that Loop is on, or that the current frame is after Start Frame. Some effects start small (a spark that grows into an explosion): play a few frames.</p></details>
+    <details><summary>It looks flat or dull</summary><p>Add bloom (see Rendering) and use a dark world. In Solid view the voxels show without their glow: switch to Material Preview or Rendered.</p></details>
+    <details><summary>The library doesn't appear in the Asset Browser</summary><p>Make sure the folder you added in Preferences is the one with <code>PixelFX 3D.blend</code> and <code>blender_assets.cats.txt</code> in it, then pick the library in the Asset Browser's top-left menu. Blender 5.2 or newer is needed.</p></details>
+    <details><summary>The viewport is slow</summary><p>Raise Viewport Simplify, set LOD Distance, or a bigger Voxel Size on effects far from the camera.</p></details>
+  </div>
+</section>
+
+<section id="credits" class="doc credits">
+  <div class="wrap">
+    <div class="kicker">9</div>
+    <h2>Credits and license</h2>
+    <p>Based on <a href="https://github.com/patch-gg/pixelfx">pixelfx</a>, MIT License, Copyright (c) 2026 Patch, Copyright (c) 2026 Hugo Duprez. The fire, smoke and particle recipes adapt <a href="https://www.spritefusion.com/pixel-art-vfx">Sprite Fusion's open-source pixel art VFX</a>, MIT License, Copyright (c) 2026 Hugo Duprez. The moves adapt <a href="https://github.com/rehan-remade/hollow-crown">Hollow Crown</a>, MIT License, Copyright (c) 2026 rehan-remade. The full texts are in the library's LICENSE file.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><a href="index.html">PixelFX 3D for Blender</a> &middot; &copy; BlenderProcedural</div>
+</footer>
+<script src="assets/embed.js"></script>
+</body>
+</html>
