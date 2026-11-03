@@ -11,7 +11,7 @@
     a.rel = 'noopener';
   });
   function post() {
-    try { parent.postMessage({ type: 'pixelfx3d-height', height: document.documentElement.scrollHeight }, '*'); } catch (err) { /* ignore */ }
+    try { parent.postMessage({ type: 'voxelvfx3d-height', height: document.documentElement.scrollHeight }, '*'); } catch (err) { /* ignore */ }
   }
   window.addEventListener('load', post);
   if (window.ResizeObserver) new ResizeObserver(post).observe(document.body);

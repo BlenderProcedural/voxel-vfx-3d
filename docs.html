@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PixelFX 3D: documentation</title>
-<meta name="description" content="How to install and use PixelFX 3D, the 3D voxel VFX library for Blender.">
-<meta property="og:title" content="PixelFX 3D: documentation">
-<meta property="og:description" content="How to install and use PixelFX 3D, the 3D voxel VFX library for Blender.">
+<title>Voxel VFX 3D: documentation</title>
+<meta name="description" content="How to install and use Voxel VFX 3D, the 3D voxel VFX library for Blender.">
+<meta property="og:title" content="Voxel VFX 3D: documentation">
+<meta property="og:description" content="How to install and use Voxel VFX 3D, the 3D voxel VFX library for Blender.">
 <meta property="og:image" content="images/thumbnail.jpg">
 <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -14,7 +14,7 @@
 
 <header class="hero">
   <div class="wrap">
-    <h1 class="logo">PIXELFX <span>3D</span></h1>
+    <h1 class="logo">VOXEL VFX <span>3D</span></h1>
     <p class="tagline">Documentation</p>
     <nav class="docnav">
       <a href="#install">Install</a><a href="#use">Use an effect</a><a href="#inputs">Modifier inputs</a><a href="#timing">Timing</a>
@@ -29,11 +29,11 @@
     <div class="kicker">1</div>
     <h2>Install the library</h2>
     <ol class="steps">
-      <li>Unzip <b>PixelFX3D_Library.zip</b> somewhere it can stay, for example <code>Documents/Blender Assets/PixelFX 3D</code>. The folder holds <code>PixelFX 3D.blend</code>, its catalogs, a README and the license.</li>
+      <li>Unzip <b>VoxelVFX3D_Library.zip</b> somewhere it can stay, for example <code>Documents/Blender Assets/Voxel VFX 3D</code>. The folder holds <code>Voxel VFX 3D.blend</code>, its catalogs, a README and the license.</li>
       <li>In Blender open <b>Edit &gt; Preferences &gt; File Paths &gt; Asset Libraries</b>, press <b>+</b> and pick that folder.</li>
       <li>Leave the import method on <b>Append (Reuse Data)</b>: every effect you add shares one copy of the player node group.</li>
     </ol>
-    <div class="note"><p>PixelFX 3D is not an add-on. There is nothing to enable, and a .blend you send to someone else plays the effects as long as they have Blender 5.2 or newer.</p></div>
+    <div class="note"><p>Voxel VFX 3D is not an add-on. There is nothing to enable, and a .blend you send to someone else plays the effects as long as they have Blender 5.2 or newer.</p></div>
   </div>
 </section>
 
@@ -42,12 +42,12 @@
     <div class="kicker">2</div>
     <h2>Use an effect</h2>
     <ol class="steps">
-      <li>Turn any area into an <b>Asset Browser</b> (the timeline works well) and choose the <b>PixelFX 3D</b> library at the top left.</li>
+      <li>Turn any area into an <b>Asset Browser</b> (the timeline works well) and choose the <b>Voxel VFX 3D</b> library at the top left.</li>
       <li>Pick a category on the left, or type in the search field: <i>fire</i>, <i>portal</i>, <i>coin</i>.</li>
       <li>Drag an effect into the 3D viewport and let go. It lands on the surface under the cursor.</li>
       <li>Press play (<kbd>Space</kbd>). Every effect loops from frame 1.</li>
     </ol>
-    <p>An effect is an ordinary object: move, rotate and scale it, parent it to something, duplicate it with <kbd>Shift</kbd> <kbd>D</kbd>. Its mesh is empty; the <b>PixelFX 3D</b> modifier builds the cubes for the current frame, so the effect only appears when the modifier is on.</p>
+    <p>An effect is an ordinary object: move, rotate and scale it, parent it to something, duplicate it with <kbd>Shift</kbd> <kbd>D</kbd>. Its mesh is empty; the <b>Voxel VFX 3D</b> modifier builds the cubes for the current frame, so the effect only appears when the modifier is on.</p>
     <p>Change an effect's size by scaling the object, or with <b>Pixel Size</b> in the modifier's <b>Baked Effect</b> panel (the size of one art pixel, 0.025 m by default).</p>
   </div>
 </section>
@@ -131,7 +131,7 @@
     <h2>Troubleshooting</h2>
     <details><summary>I dropped an effect and nothing shows</summary><p>Check the modifier is enabled in the viewport, and that Loop is on, or that the current frame is after Start Frame. Some effects start small (a spark that grows into an explosion): play a few frames.</p></details>
     <details><summary>It looks flat or dull</summary><p>Add bloom (see Rendering) and use a dark world. In Solid view the voxels show without their glow: switch to Material Preview or Rendered.</p></details>
-    <details><summary>The library doesn't appear in the Asset Browser</summary><p>Make sure the folder you added in Preferences is the one with <code>PixelFX 3D.blend</code> and <code>blender_assets.cats.txt</code> in it, then pick the library in the Asset Browser's top-left menu. Blender 5.2 or newer is needed.</p></details>
+    <details><summary>The library doesn't appear in the Asset Browser</summary><p>Make sure the folder you added in Preferences is the one with <code>Voxel VFX 3D.blend</code> and <code>blender_assets.cats.txt</code> in it, then pick the library in the Asset Browser's top-left menu. Blender 5.2 or newer is needed.</p></details>
     <details><summary>The viewport is slow</summary><p>Raise Viewport Simplify, set LOD Distance, or a bigger Voxel Size on effects far from the camera.</p></details>
   </div>
 </section>
@@ -145,7 +145,7 @@
 </section>
 
 <footer>
-  <div class="wrap"><a href="index.html">PixelFX 3D for Blender</a> &middot; &copy; BlenderProcedural</div>
+  <div class="wrap"><a href="index.html">Voxel VFX 3D for Blender</a> &middot; &copy; BlenderProcedural</div>
 </footer>
 <script src="assets/embed.js"></script>
 </body>
