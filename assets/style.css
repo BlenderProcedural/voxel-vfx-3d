@@ -145,3 +145,6 @@ td { color: var(--soft); }
 @media (max-width: 520px) {
   .fxgrid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* videos keep their 16:9 box before they load, so the page height never changes */
+.media video { aspect-ratio: 16 / 9; object-fit: contain; background: #000; }
